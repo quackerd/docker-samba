@@ -35,6 +35,6 @@ def main():
             print("Added user " + elements[0] + " to group " + elements[3])
         # set passwd
         subprocess.check_call("echo -ne \"" + elements[2] + "\n" + elements[2] + "\n" + "\" | smbpasswd -a -U " + elements[0], shell=True)
-        print("Set user " + elements[0] + " password")
+        print("Set user " + elements[0] + " password to " + elements[2])
 
 main()
