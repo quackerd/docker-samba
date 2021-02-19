@@ -15,8 +15,18 @@ services:
       - "139:139/tcp"
       - "445:445/tcp"
     environment:
+      # create two users: "user1" with uid 1000, smb password password1 and add user1 to group1
+      #                   "user2" with uid 1001, smb password password2 and add user2 to group1
       - "USERS=user1,1000,password1,group1;user2,1001,password2,group1"
+      # create a group with group name "group1" and gid 2000
       - "GROUPS=group1,2000"
+      # launch smbd with extra parameters => -d 2 means log level = 2
+      - "SMBD_ARGS=-d 2"
     restart: unless-stopped
     volumes:
-      - ./samba:/samba
+      # this is the location of the config file
+      - ./smb.conf:/samba/smb.conf
+      # these are situational, depending on your smb.conf
+      - ./private:/samba/private
+      - ./public:/samba/public
+      # you might need to tag the above files properly if you are running SELinux
