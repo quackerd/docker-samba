@@ -19,4 +19,4 @@ services:
       - "GROUPS=group1,2000"
     restart: unless-stopped
     volumes:
-      - ./samba:/samba:z
+      - ./samba:/samba
