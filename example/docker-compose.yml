@@ -1,0 +1,22 @@
+version: '3.4'
+
+networks:
+  br-samba:
+      external: false
+
+services:
+  samba:
+    image: exp
+    networks:
+      - br-samba
+    ports:
+      - "137:137/udp"
+      - "138:138/udp"
+      - "139:139/tcp"
+      - "445:445/tcp"
+    environment:
+      - "USERS=user1,1000,password1,group1;user2,1001,password2,group1"
+      - "GROUPS=group1,2000"
+    restart: unless-stopped
+    volumes:
+      - ./samba:/samba:z
