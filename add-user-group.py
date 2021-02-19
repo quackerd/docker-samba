@@ -34,14 +34,14 @@ def main():
         uname = elements[0]
         uid = elements[1]
         passwd = elements[2]
-        subprocess.check_call("adduser -D -H -u ", shlex.quote(uid), shlex.quote(uname), shell=True)
+        subprocess.check_call("adduser -D -H -u " + shlex.quote(uid) + " " + shlex.quote(uname), shell=True)
         print("Added user " + uname + " with uid " + uid)
         if (len(elements) == 4):
             gname = elements[3]
             subprocess.check_call("addgroup " + shlex.quote(uname) + " " + shlex.quote(gname), shell=True)
             print("Added user " + uname + " to group " + gname)
         # set passwd
-        subprocess.check_call("echo -ne " + shlex.quote("\n" + passwd + "\n" + passwd + "\n") + " | smbpasswd -a -U " + shlex.quote(uname), shell=True)
+        subprocess.check_call("echo -ne " + shlex.quote(passwd + "\n" + passwd + "\n") + " | smbpasswd -a -U " + shlex.quote(uname), shell=True)
         print("Set user " + uname + " password to " + passwd)
 
 main()
