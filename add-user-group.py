@@ -21,8 +21,9 @@ def main():
             continue
         gid = elements[1]
         gname = elements[0]
+        cmd = "addgroup -g" + shlex.quote(gid) + " " + shlex.quote(gname)
+        print(cmd)
         subprocess.check_call("addgroup -g" + shlex.quote(gid) + " " + shlex.quote(gname), shell=True)
-        print("Added group " + gname + " with gid " + gid)
         
 
     # username,uid,password,[group]
@@ -34,14 +35,19 @@ def main():
         uname = elements[0]
         uid = elements[1]
         passwd = elements[2]
-        subprocess.check_call("adduser -D -H -u " + shlex.quote(uid) + " " + shlex.quote(uname), shell=True)
+        cmd = "adduser -D -H -u " + shlex.quote(uid) + " " + shlex.quote(uname)
+        print(cmd)
+        subprocess.check_call(cmd, shell=True)
         print("Added user " + uname + " with uid " + uid)
         if (len(elements) == 4):
             gname = elements[3]
-            subprocess.check_call("addgroup " + shlex.quote(uname) + " " + shlex.quote(gname), shell=True)
+            cmd = "addgroup " + shlex.quote(uname) + " " + shlex.quote(gname)
+            print(cmd)
+            subprocess.check_call(cmd, shell=True)
             print("Added user " + uname + " to group " + gname)
         # set passwd
-        subprocess.check_call("echo -ne " + shlex.quote(passwd + "\n" + passwd + "\n") + " | smbpasswd -a -U " + shlex.quote(uname), shell=True)
-        print("Set user " + uname + " password to " + passwd)
+        cmd = "echo -ne " + shlex.quote(passwd + "\n" + passwd + "\n") + " | smbpasswd -a -U " + shlex.quote(uname)
+        print(cmd)
+        subprocess.check_call(cmd, shell=True)
 
 main()
