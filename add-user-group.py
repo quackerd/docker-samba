@@ -38,15 +38,13 @@ def main():
         cmd = "adduser -D -H -u " + shlex.quote(uid) + " " + shlex.quote(uname)
         print(cmd)
         subprocess.check_call(cmd, shell=True)
-        print("Added user " + uname + " with uid " + uid)
         if (len(elements) == 4):
             gname = elements[3]
             cmd = "addgroup " + shlex.quote(uname) + " " + shlex.quote(gname)
             print(cmd)
             subprocess.check_call(cmd, shell=True)
-            print("Added user " + uname + " to group " + gname)
         # set passwd
-        cmd = "echo -ne " + shlex.quote(passwd + "\n" + passwd + "\n") + " | smbpasswd -a -U " + shlex.quote(uname)
+        cmd = "echo -ne \"" + shlex.quote(passwd) + "\\n" + shlex.quote(passwd) + "\\n\" | smbpasswd -a -U " + shlex.quote(uname)
         print(cmd)
         subprocess.check_call(cmd, shell=True)
 
