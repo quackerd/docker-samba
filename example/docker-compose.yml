@@ -18,7 +18,7 @@ services:
       # create two users: "user1" with uid 1000, smb password password1 and add user1 to group1
       #                   "user2" with uid 1001, smb password password2 and add user2 to group1 and group2
       - "USERS=user1,1000,password1,group1;user2,1001,password2,group1,group2"
-      # create a group with group name "group1" and gid 2000
+      # create groups with group name "group1" with gid 2000 and "group2" with gid 2001
       - "GROUPS=group1,2000;group2,2001"
       # launch smbd with extra parameters => -d 2 means log level = 2
       - "SMBD_ARGS=-d 2"
