@@ -1,5 +1,4 @@
 # docker-samba
-
 [![Build Status](https://ci.quacker.org/api/badges/d/docker-samba/status.svg)](https://ci.quacker.org/d/docker-samba)
 
 ## What is this?
