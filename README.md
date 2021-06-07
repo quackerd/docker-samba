@@ -1,7 +1,6 @@
 # docker-samba
 [![Build Status](https://ci.quacker.org/api/badges/d/docker-samba/status.svg)](https://ci.quacker.org/d/docker-samba)
 
-
 ## What is this?
 This is Samba server in Docker. The image is designed for flexbility and maintainability. You are expected to supply your own smb.conf and user/group configs. You also need to maintain the proper permissions for shared folders, which usually only need to be done correctly once at the beginning.
 
